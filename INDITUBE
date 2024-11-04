@@ -1,0 +1,74 @@
+from flask import Flask, request, jsonify
+from firebase_admin import auth, initialize_app
+
+app = Flask(__name__)
+initialize_app()  # Initializes Firebase app
+
+@app.route('/signup', methods=['POST'])
+def signup():
+    data = request.json
+    user = auth.create_user(email=data['email'], password=data['password'])
+    return jsonify({"message": "User created", "userId": user.uid})
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.json
+    # Add login logic using Firebase Authentication
+    return jsonify({"message": "User logged in"})
+function uploadVideo(file) {
+    const storageRef = firebase.storage().ref(`videos/${file.name}`);
+    storageRef.put(file).then(() => {
+        console.log('Video uploaded successfully');
+    });
+}
+<video id="videoPlayer" controls width="600">
+    <source src="VIDEO_URL_HERE" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+import random
+
+# Sample list of video metadata
+videos = [
+    {"title": "Video 1", "tags": ["music", "fun"]},
+    {"title": "Video 2", "tags": ["education", "tutorial"]},
+    {"title": "Video 3", "tags": ["comedy", "skit"]},
+]
+
+def recommend_videos(tag):
+    return [video for video in videos if tag in video['tags']]
+
+recommended_videos = recommend_videos("music")
+print(recommended_videos)
+function likeVideo(videoId) {
+    // Increment the like count for the video
+    console.log(`Liked video with ID: ${videoId}`);
+}
+
+function addComment(videoId, comment) {
+    // Add the comment to the video
+    console.log(`Comment added to video with ID: ${videoId}`);
+}
+@app.route('/like', methods=['POST'])
+def like_video():
+    video_id = request.json['videoId']
+    # Logic to update like count in the database
+    return jsonify({"message": "Video liked"})
+
+@app.route('/comment', methods=['POST'])
+def comment_video():
+    video_id = request.json['videoId']
+    comment = request.json['comment']
+    # Logic to save comment in the database
+    return jsonify({"message": "Comment added"})
+@app.route('/like', methods=['POST'])
+def like_video():
+    video_id = request.json['videoId']
+    # Logic to update like count in the database
+    return jsonify({"message": "Video liked"})
+
+@app.route('/comment', methods=['POST'])
+def comment_video():
+    video_id = request.json['videoId']
+    comment = request.json['comment']
+    # Logic to save comment in the database
+    return jsonify({"message": "Comment added"})
